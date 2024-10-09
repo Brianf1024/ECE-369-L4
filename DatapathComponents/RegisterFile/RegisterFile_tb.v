@@ -46,4 +46,27 @@ module RegisterFile_tb();
         WriteData = 0;
         RegWrite = 0;
 
-        // Test Case 1: Write arbitrary values into registers 8 through
+        // Test Case 1: Write arbitrary values into registers 8 through 25
+        #20;
+        for (int i = 8; i <= 25; i = i + 1) begin
+            WriteRegister = i;
+            WriteData = i * 286331153; // 0x11111111 in decimal
+            RegWrite = 1;
+            #20;
+        end
+        RegWrite = 0;
+
+        // Test Case 2: Read values from registers 8 through 25, two by two
+        #20;
+        for (int i = 8; i <= 24; i = i + 2) begin
+            ReadRegister1 = i;
+            ReadRegister2 = i + 1;
+            #20;
+        end
+
+        // Finish simulation
+        #20;
+        $finish;
+    end
+
+endmodule
