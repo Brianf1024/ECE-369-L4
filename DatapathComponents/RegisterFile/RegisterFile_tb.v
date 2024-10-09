@@ -18,6 +18,7 @@ module RegisterFile_tb();
     reg [31:0] WriteData;
     reg RegWrite;
     reg Clk;
+    integer i;
 
     wire [31:0] ReadData1;
     wire [31:0] ReadData2;
@@ -34,7 +35,7 @@ module RegisterFile_tb();
     );
 
     initial begin
-        Clk <= 0;
+        Clk <= 1'b0;
         forever #10 Clk <= ~Clk;
     end
 
@@ -48,9 +49,9 @@ module RegisterFile_tb();
 
         // Test Case 1: Write arbitrary values into registers 8 through 25
         #20;
-        for (int i = 8; i <= 25; i = i + 1) begin
+        for (i = 8; i <= 25; i = i + 1) begin
             WriteRegister = i;
-            WriteData = i * 286331153; // 0x11111111 in decimal
+            WriteData = i * 10;
             RegWrite = 1;
             #20;
         end
@@ -58,7 +59,7 @@ module RegisterFile_tb();
 
         // Test Case 2: Read values from registers 8 through 25, two by two
         #20;
-        for (int i = 8; i <= 24; i = i + 2) begin
+        for (i = 8; i <= 24; i = i + 2) begin
             ReadRegister1 = i;
             ReadRegister2 = i + 1;
             #20;
