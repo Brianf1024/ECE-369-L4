@@ -14,6 +14,6 @@ module SignExtension(in, out);
     output [31:0] out;
     
     /* Fill in the implementation here ... */
-    assign out = {16{in[15]}, in};
+    assign out = (in[15]) ? {16'hFFFF, in} : {16'h0000, in};
 
 endmodule
