@@ -30,8 +30,6 @@ module DataMemory_tb();
         Clk <= 0;
         forever #10 Clk <= ~Clk;
     end
-
-    initial begin
     
     initial begin
         // Initialize inputs
